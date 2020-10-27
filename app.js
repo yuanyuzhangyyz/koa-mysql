@@ -69,23 +69,21 @@ router.get('/additem', async ctx => {
 });
 
 // 处理提交数据请求
-                // router.post('/additem', KoaBody(), async ctx => {
-                //     // post 提交的数据解析后存储 ctx.request.body
-                //     // console.log('body', ctx.request.body);
-                //     let {category_id: categoryId, name, price, cover} = ctx.request.body;
-                //     // console.log(categoryId, name, price, cover);
-                //     let rs = await query(
-                //         "insert into `items` (`category_id`, `name`, `price`, `cover`) values (?, ?, ?, ?)",
-                //         [
-                //             categoryId,
-                //             name,
-                //             price,
-                //             cover
-                //         ]
-                //     );
+                router.post('/additem', KoaBody(), async ctx => {
+                    
+                    let {id: username} = ctx.request.body;
+                    // console.log(categoryId, name, price, cover);
+                    let rs = await query(
+                        "insert into `users` (`id`, `name`) values (?, ?)"
+                        [
+                            id,
+                            username
+                            
+                        ]
+                    );
 
-                //     ctx.body = '添加成功';
-                // });
+                    ctx.body = '添加成功';
+                });
 
 
 
