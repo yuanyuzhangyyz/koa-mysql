@@ -23,27 +23,20 @@
         
        <div id="login" class="panel">
            <h2>添加人名</h2>
-           <form action="/additem" method="post">
+           <form action="/register" method="post">
                 <div class="form-item">
-                    <!-- <label>
-                        <span class="txt">分类：</span>
-                        <select name="category_id">
-                            {% for user in users %}
-                                <option value="{{user.id}}">{{user.id}}</option>
-                            {% endfor %}
-                        </select>
-                    </label> -->
+                   
                 </div>
                 <div class="form-item">
                     <label>
                         <span class="txt">ID：</span>
-                        <input type="text" name="name" class="form-input">
+                        <input type="text" name="id" class="form-input">
                     </label>
                 </div>
                 <div class="form-item">
                     <label>
                         <span class="txt">姓名：</span>
-                        <input type="text" name="name" class="form-input">
+                        <input type="text" name="username" class="form-input">
                     </label>
                 </div>
               

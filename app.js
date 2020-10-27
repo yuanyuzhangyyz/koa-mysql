@@ -37,53 +37,48 @@ router.get('/', async ctx => {
     );
 
 
-                    // let data = await query(
-                    //     'select * from `items`'
-                    // );
 
     ctx.body = Nunjucks.render('index.html', {
         users,
-                         // data,
-       
+        // data,
+
     });
 });
 
-// 商品详情
-// :id 表示是一个动态路由，:id 是可变的，具体根据请求来决定
-// 如果一个请求是以 /item 开始 然后，后面跟着 / 任意内容，就能满足该路由的规则
-// :id 是一个占位符 变量，名称可以自己定，但是在中间件里面用的话需要使用这个名称
-// (\\d+) 是对可变数据的 约束
-                // router.get('/item/:id(\\d+)', async ctx => {
 
-                // });
-
-// 渲染表单页面
-router.get('/additem', async ctx => {
+router.get('/register', async ctx => {
     let users = await query(
         'select * from `users`'
     );
 
-    ctx.body = Nunjucks.render('additem.html', {
+    ctx.body = Nunjucks.render('register.html', {
         users
     });
 });
 
 // 处理提交数据请求
-                router.post('/additem', KoaBody(), async ctx => {
-                    
-                    let {id: username} = ctx.request.body;
-                    // console.log(categoryId, name, price, cover);
-                    let rs = await query(
-                        "insert into `users` (`id`, `name`) values (?, ?)"
-                        [
-                            id,
-                            username
-                            
-                        ]
-                    );
+router.post('/register', KoaBody(), async ctx => {
+    let {
+        id,
+        username
+        } = ctx.request.body;
+    let rs = await query(
+        "insert into `users` (`id`, `username`) values (?, ?)",
+        [
+            id,
+            username
+        ]
+    );
+    console.log("rs******",rs)
+    // rs.then(()=>{
+    //     ctx.body = "注册成功";
 
-                    ctx.body = '添加成功';
-                });
+    // },(err)=>{
+    //     ctx.body = "注册失败";
+    //     console.log("err1111111111",err)
+    // })
+
+});
 
 
 
@@ -95,13 +90,14 @@ app.listen(8888, () => {
 
 
 function query(sql, data) {
-    return new Promise( (resolve, reject) => {
-        connection.query(sql, data, function(err, ...data) {
+    return new Promise((resolve, reject) => {
+        connection.query(sql, data, function (err, ...data) {
             if (err) {
+                console.log("here err",err)
                 reject(err);
             } else {
                 resolve(...data);
             }
         })
-    } );
+    });
 }
