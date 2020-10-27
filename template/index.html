@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/css.css" />
+</head>
+<body>
+    
+    <div id="app">
+        <header id="header">
+            <a href="/" id="logo"></a>
+    
+            {% include "nav.html" %}
+    
+            <div id="user">
+                <a href="">登录</a>
+                <a href="">注册</a>
+            </div>
+        </header>
+    
+        <div id="main">
+            
+            <ul class="items-list">
+    
+                {% for item in data %}
+                <li class="panel">
+                    <a href="/item/{{item.id}}">
+                        <img src="/public/items/images/{{item.cover}}" alt="{{item.name}}" class="cover">
+                    </a>
+                    <div class="name">{{item.name}}</div>
+                    <div class="price">¥ {{(item.price/100).toFixed(2)}}</div>
+                </li>
+                {% endfor %}
+    
+            </ul>
+    
+            <div class="pagination-container">
+                
+                <div class="pagination">
+                    <a href="/?page={{page-1}}" class="prev">上一页</a>
+                    {% for i in range(0, pages) -%}
+                        {% if i+1 == page %}
+                        <a href="/?page={{i+1}}" class="current">{{i+1}}</a>
+                        {% else %}
+                        <a href="/?page={{i+1}}">{{i+1}}</a>
+                        {% endif %}
+                    {%- endfor %}
+                    <a href="/?page={{page+1}}" class="next">下一页</a>
+                </div>
+    
+            </div>
+    
+        </div>
+    </div>
+
+</body>
+</html>
