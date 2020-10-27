@@ -22,36 +22,32 @@
     <div id="main">
         
        <div id="login" class="panel">
-           <h2>添加新商品</h2>
+           <h2>添加人名</h2>
            <form action="/additem" method="post">
                 <div class="form-item">
-                    <label>
+                    <!-- <label>
                         <span class="txt">分类：</span>
                         <select name="category_id">
-                            {% for category in categories %}
-                                <option value="{{category.id}}">{{category.name}}</option>
+                            {% for user in users %}
+                                <option value="{{user.id}}">{{user.id}}</option>
                             {% endfor %}
                         </select>
-                    </label>
+                    </label> -->
                 </div>
                 <div class="form-item">
                     <label>
-                        <span class="txt">名称：</span>
+                        <span class="txt">ID：</span>
                         <input type="text" name="name" class="form-input">
                     </label>
                 </div>
                 <div class="form-item">
                     <label>
-                        <span class="txt">价格：</span>
-                        <input type="text" name="price" class="form-input">
+                        <span class="txt">姓名：</span>
+                        <input type="text" name="name" class="form-input">
                     </label>
                 </div>
-                <div class="form-item">
-                    <label>
-                        <span class="txt">封面：</span>
-                        <input type="text" name="cover" class="form-input">
-                    </label>
-                </div>
+              
+             
                 <div class="form-item">
                     <label>
                         <span class="txt"></span>
