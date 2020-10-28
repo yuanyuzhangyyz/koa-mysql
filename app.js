@@ -60,23 +60,23 @@ router.get('/register', async ctx => {
 router.post('/register', KoaBody(), async ctx => {
     let {
         id,
-        username
+        username,
+        IDcardNo
         } = ctx.request.body;
-    let rs = await query(
-        "insert into `users` (`id`, `username`) values (?, ?)",
+        // if(!id|!username)
+         await query(
+        "insert into `users` (`id`, `username`,`IDcardNo`) values (?, ?,?)",
         [
             id,
-            username
+            username,
+            IDcardNo
         ]
-    );
-    console.log("rs******",rs)
-    // rs.then(()=>{
-    //     ctx.body = "注册成功";
+    ).then(()=>{
+        ctx.body = "注册成功";
 
-    // },(err)=>{
-    //     ctx.body = "注册失败";
-    //     console.log("err1111111111",err)
-    // })
+    },(err)=>{
+        ctx.body = "注册失败";
+    })
 
 });
 
